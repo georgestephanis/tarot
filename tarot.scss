@@ -1,0 +1,55 @@
+.tarot-card {
+	background: white;
+	border: 1px solid #000;
+	border-radius: 1em;
+	margin: 1em;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	width: 320px;
+	height: 550px;
+}
+
+
+/* http://tarotprophet.com/6-most-common-tarot-spreads-and-their-uses/ */
+.tarot-spread {
+	background: forestgreen;
+	padding: 1em;
+	/* three cards */
+	&.three-card {
+		figure {
+			max-width: 30%;
+			max-width: calc(33.333% - .667em);
+			margin: 0 0 0 1em;
+			float: left;
+			&:first-child {
+				margin-left: 0;
+			}
+			.tarot-card {
+				max-width: 100%;
+				height: auto;
+				margin: 0 0 1em;
+				&.inverted {
+					img {
+						transform: rotate(180deg);
+					}
+				}
+				img {
+					margin: 10px 0;
+					width: 95%;
+					width: calc(100% - 20px);
+					height: auto;
+				}
+			}
+			figcaption {
+				text-align: center;
+				color: #fff;
+				font-weight: 700;
+				font-size: 1.4em;
+			}
+		}
+		overflow: hidden;
+	}
+}
