@@ -31,6 +31,19 @@
 				max-width: 100%;
 				height: auto;
 				margin: 0 0 1em;
+				&.empty{
+					background-color: #f59e00;
+					cursor: pointer;
+					&:before {
+						display: block;
+						content: '🏵️';
+						font-size: 10em;
+						text-align: center;
+						height: 270px;
+						display: flex;
+						align-items: center;
+					}
+				}
 				&.inverted {
 					img {
 						transform: rotate(180deg);

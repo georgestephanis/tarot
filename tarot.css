@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .tarot-card {
   background: white;
   border: 1px solid #000;
@@ -29,6 +30,17 @@
         max-width: 100%;
         height: auto;
         margin: 0 0 1em; }
+        .tarot-spread.three-card figure .tarot-card.empty {
+          background-color: #f59e00;
+          cursor: pointer; }
+          .tarot-spread.three-card figure .tarot-card.empty:before {
+            display: block;
+            content: '🏵️';
+            font-size: 10em;
+            text-align: center;
+            height: 270px;
+            display: flex;
+            align-items: center; }
         .tarot-spread.three-card figure .tarot-card.inverted img {
           transform: rotate(180deg); }
         .tarot-spread.three-card figure .tarot-card img {

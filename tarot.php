@@ -23,21 +23,27 @@ class Tarot {
 		<div class="tarot-spread three-card">
 			<?php
 			self::print_card( $deck['ARCANA-02-HIGH-PRIESTESS'], 'inverted' );
-			self::print_card( $deck['ARCANA-13-DEATH'] );
+			self::print_card();
 			self::print_card( $deck['QUEEN-WANDS'] );
 			?>
 		</div>
 		<?php
 	}
 
-	public static function print_card( $card, $classes = '' ) {
+	public static function print_card( $card = null, $classes = '' ) {
 		?>
 		<figure>
-			<div class="tarot-card <?php echo esc_attr( $classes ); ?>">
-				<img class="card-art" src="<?php echo esc_url( $card['image_url'] ); ?>" width="150" alt="<?php echo esc_attr( $card['unicode'] ); ?>" />
+			<div class="tarot-card <?php echo esc_attr( $classes ); ?> <?php if ( ! $card ) echo 'empty'; ?>">
+				<?php if ( $card ) : ?>
+					<img class="card-art" src="<?php echo esc_url( $card['image_url'] ); ?>" width="150" alt="<?php echo esc_attr( $card['unicode'] ); ?>" />
+				<?php endif; ?>
 			</div>
 			<figcaption>
-				<?php echo esc_html( $card['label'] ) . ( false !== strpos( $classes, 'inverted' ) ? ' ' . esc_html__( '(Inverted)' ) : '' ); ?>
+				<?php if ( $card ) : ?>
+					<?php echo esc_html( $card['label'] ) . ( false !== strpos( $classes, 'inverted' ) ? ' ' . esc_html__( '(Inverted)' ) : '' ); ?>
+				<?php else : ?>
+					<?php esc_html_e( 'Choose a card&hellip;' ); ?>
+				<?php endif; ?>
 			</figcaption>
 		</figure>
 		<?php
