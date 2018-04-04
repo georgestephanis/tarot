@@ -1,15 +1,15 @@
 .tarot-card {
 	background: white;
 	border: 1px solid #000;
-	border-radius: 1em;
+	border-radius: 0.5em;
 	margin: 1em;
 	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
-	width: 320px;
-	height: 550px;
+	width: 166px;
+	height: 270px;
 }
 
 
@@ -39,7 +39,7 @@
 				img {
 					margin: 10px 0;
 					width: 95%;
-					width: calc(100% - 20px);
+					width: calc(100% - 14px);
 					height: auto;
 				}
 			}
