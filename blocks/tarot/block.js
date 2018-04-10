@@ -17,11 +17,7 @@
 		},
 
 		save: function() {
-			return el(
-				'p',
-				{},
-				__( 'Replace with your content!', 'tarot' )
-			);
+			return null;
 		}
 	} );
 } )( window.wp );
