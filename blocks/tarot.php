@@ -8,7 +8,11 @@ function tarot_enqueue_block_editor_assets() {
 		'wp-blocks',
 		'wp-i18n',
 		'wp-element',
+		'underscore',
 	), filemtime( "$dir/$block_js" ) );
+	wp_localize_script( 'tarot-block', 'tarotData', array(
+		'deck' => Tarot::get_deck(),
+	) );
 	wp_enqueue_style( 'tarot-block', plugins_url( $editor_css, __FILE__ ), array(
 		'wp-blocks',
 	), filemtime( "$dir/$editor_css" ) );

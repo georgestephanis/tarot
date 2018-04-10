@@ -566,7 +566,8 @@ class Tarot {
 			14 => __( 'King of %s' ),
 		);
 
-		foreach ( $deck as &$card ) {
+		foreach ( $deck as $id => &$card ) {
+			$card['id'] = $id;
 			$card['image_url'] = plugins_url( $card['image'], __FILE__ );
 			// This is manually specified for the Major Arcana, but let's populate it automatically for the minors.
 			if ( empty( $card['label'] ) ) {
