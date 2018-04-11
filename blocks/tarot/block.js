@@ -3,39 +3,39 @@
 		__ = wp.i18n.__;
 
 	function pickCards( qty ) {
-		var thisDeck = _.toArray( deck );
-		thisDeck = _.shuffle( thisDeck );
+		var thisDeck = _.shuffle( _.toArray( deck ) ),
+			selection = _.first( thisDeck, qty );
 
-		_.each( thisDeck, function( c, index ) {
-			thisDeck[ index ].inverted = Math.random() > 0.5;
+		_.each( selection, function( c, index ) {
+			selection[ index ].inverted = Math.random() > 0.5;
 		});
 
-		console.log( thisDeck );
-		return _.first( thisDeck, qty );
+		return selection;
 	}
 
 	class TarotCard extends wp.element.Component {
 		render() {
-			var card = this.props.card,
+			var id = this.props.id ? this.props.id : null,
+				card = deck[ id ] ? deck[ id ] : null,
 				classes = this.props.classes || '';
 
 			return el(
 				'figure',
 				{
-					key : 'tarot/card/' + this.props.id
+					key : 'tarot/card/' + id
 				},
 				[
 					el(
 						'div',
 						{
-							key       : 'tarot/card/' + this.props.id + '/div',
-							className : 'tarot-card ' + classes + ( !! this.props.card ? '' : ' empty' ),
+							key       : 'tarot/card/' + id + '/div',
+							className : 'tarot-card ' + classes + ( !! id ? '' : ' empty' ),
 						},
 						[
-							!! this.props.card && el(
+							!! card && el(
 								'img',
 								{
-									key       : 'tarot/card/' + this.props.id + '/image',
+									key       : 'tarot/card/' + id + '/image',
 									className : 'card-art',
 									src       : card.image_url,
 									width     : 150,
@@ -47,14 +47,14 @@
 					el(
 						'figcaption',
 						{
-							key : 'tarot/card/' + this.props.id + '/caption',
+							key : 'tarot/card/' + id + '/caption',
 						},
 						[
-							!! this.props.card && (
+							!! id && (
 								card.label +
 								( -1 !== classes.indexOf( 'inverted' ) ? ' ' + __( '(Inverted)', 'tarot' ) : '' )
 							),
-							! this.props.card && __( 'Choose a card…', 'tarot' )
+							! id && __( 'Choose a card…', 'tarot' )
 						]
 					)
 				]
@@ -76,40 +76,63 @@
 		},
 
 		edit: function( props ) {
-			var cards, cardsEl,
-				buildEl = function( c ) {
-					return el(
-						TarotCard,
-						{
-							key : 'tarot/spread/' + c.id,
-							classes : c.inverted ? 'inverted' : '',
-							id  : c.id,
-							card : c
-						}
-					);
+			var cards = null,
+				generateSpread = function() {
+					cards = pickCards( 3 );
+					var newCards = {};
+					_.each( cards, function( c ) {
+						newCards[ c.id ] = {
+							inverted : c.inverted
+						};
+					});
+					props.setAttributes({
+						cards : newCards
+					});
 				};
 
 			// If we have cards stored for this block, use those.  Otherwise, get some new ones and store them.
 			if ( props.attributes.cards ) {
 				cards = props.attributes.cards;
-			} else {
-				cards = pickCards( 3 );
-				props.setAttributes({
-					cards : cards
-				});
 			}
 
-			cardsEl = _.map( cards, buildEl );
-
 			return [
-				el(
+				!! cards && el(
 					'div',
 					{
 						key: 'tarot-spread',
 						className: props.className + ' tarot-spread three-card',
 					},
-					cardsEl
-				)
+					_.map( cards, function( c, id ) {
+						return el(
+							TarotCard,
+							{
+								key     : 'tarot/spread/' + id,
+								classes : c.inverted ? 'inverted' : '',
+								id      : id
+							}
+						);
+					} )
+				),
+				! cards && el(
+						wp.components.Placeholder,
+						{
+							key : 'tarot/spread/generate',
+							label : __( 'Generate a Tarot Spread…', 'tarot' ),
+							icon : 'admin-page'
+						},
+						[
+							el(
+								wp.components.Button,
+								{
+									key : 'tarot/spread/generate/button',
+									isPrimary : true,
+									isLarge : true,
+									onClick : generateSpread
+								},
+								__( 'Three-Card Spread', 'tarot' )
+							),
+						]
+					),
 			];
 		},
 
