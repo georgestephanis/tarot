@@ -155,7 +155,7 @@
 						{
 							key : 'tarot/card/' + id
 						},
-						deck[ id ].label + ( c.inverted ? __( ' (Inverted)', 'tarot' ) : '' )
+						deck[ id ].label + ( c.inverted ? ' ' + __( '(Inverted)', 'tarot' ) : '' )
 					)
 				} )
 			);
