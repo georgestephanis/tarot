@@ -136,8 +136,29 @@
 			];
 		},
 
-		save: function() {
-			return null;
+		save: function( props ) {
+			var cards = null;
+
+			// If we have cards stored for this block, use those.  Otherwise, get some new ones and store them.
+			if ( props.attributes.cards ) {
+				cards = props.attributes.cards;
+			}
+
+			return el(
+				'ol',
+				{
+					className : 'tarot-spread'
+				},
+				!! cards && _.map( cards, function( c, id ) {
+					return el(
+						'li',
+						{
+							key : 'tarot/card/' + id
+						},
+						deck[ id ].label + ( c.inverted ? __( ' (Inverted)', 'tarot' ) : '' )
+					)
+				} )
+			);
 		}
 	} );
 } )( window.wp, tarotData.deck, _ );
