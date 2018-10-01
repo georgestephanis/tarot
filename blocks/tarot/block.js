@@ -70,8 +70,8 @@
 
 		attributes : {
 			cards : {
-				type    : 'array',
-				default : ''
+				type    : 'object',
+				default : null
 			},
 		},
 
