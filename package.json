@@ -5,8 +5,8 @@
   "main": "blocks/tarot/block.js",
   "private": true,
   "scripts": {
-    "start": "parcel watch blocks/tarot/block.jsx",
-    "build": "parcel build blocks/tarot/block.jsx"
+    "start": "parcel watch blocks/tarot/block.jsx --out-dir blocks/tarot",
+    "build": "parcel build blocks/tarot/block.jsx --out-dir blocks/tarot"
   },
   "keywords": [
     "wordpress",
@@ -19,5 +19,8 @@
     "@babel/core": "^7.1.0",
     "@wordpress/babel-preset-default": "^2.1.0",
     "parcel-bundler": "^1.10.1"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.1.2"
   }
 }
