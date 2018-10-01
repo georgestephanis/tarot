@@ -19,7 +19,7 @@ class Tarot {
 		wp_enqueue_style( 'tarot', plugins_url( 'tarot.css', __FILE__ ) );
 		$deck = self::get_deck();
 
-		self::print_card( $deck['ARCANA-13-DEATH'] );
+		array_map( array( __CLASS__, 'print_card' ), $deck );
 		?>
 		<div class="tarot-spread three-card">
 			<?php
