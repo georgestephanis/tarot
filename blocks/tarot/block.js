@@ -114,25 +114,25 @@
 					} )
 				),
 				! cards && el(
-						wp.components.Placeholder,
-						{
-							key : 'tarot/spread/generate',
-							label : __( 'Generate a Tarot Spread…', 'tarot' ),
-							icon : 'admin-page'
-						},
-						[
-							el(
-								wp.components.Button,
-								{
-									key : 'tarot/spread/generate/button',
-									isPrimary : true,
-									isLarge : true,
-									onClick : generateSpread
-								},
-								__( 'Three-Card Spread', 'tarot' )
-							),
-						]
-					),
+					wp.components.Placeholder,
+					{
+						key : 'tarot/spread/generate',
+						label : __( 'Generate a Tarot Spread…', 'tarot' ),
+						icon : 'admin-page'
+					},
+					[
+						el(
+							wp.components.Button,
+							{
+								key : 'tarot/spread/generate/button',
+								isPrimary : true,
+								isLarge : true,
+								onClick : generateSpread
+							},
+							__( 'Three-Card Spread', 'tarot' )
+						),
+					]
+				),
 			];
 		},
 
