@@ -51,6 +51,21 @@ class Tarot {
 
 	}
 
+	public static function print_spread( $atts ) {
+		$deck = self::get_deck();
+
+		$return = '<div class="tarot-spread three-card">';
+		foreach ( $atts['cards'] as $card => $props ) {
+			ob_start();
+			self::print_card( $deck[ $card ], ( $props['inverted'] ? 'inverted' : '' ) );
+			$return .= ob_get_clean();
+		}
+		$return .= '</div>';
+
+		return $return;
+
+	}
+
 	public static function get_deck() {
 		$deck = array (
 			'ARCANA-00-FOOL' => array(
