@@ -2,6 +2,13 @@
 
 /**
  * Plugin Name: Tarot
+ * Plugin URI:   https://github.com/georgestephanis/tarot/
+ * Description:  A Gutenberg Block allowing Tarot card spreads
+ * Version:      0.9
+ * Author:       George Stephanis
+ * Author URI:   https://stephanis.info
+ * License:      GPL2
+ * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 class Tarot {
