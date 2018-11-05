@@ -20,13 +20,14 @@
   .tarot-spread.three-card {
     overflow: hidden; }
     .tarot-spread.three-card figure {
-      max-width: 30%;
+      width: 33.333%;
       max-width: calc(33.333% - .667em);
       margin: 0 0 0 1em;
       float: left; }
       .tarot-spread.three-card figure:first-child {
         margin-left: 0; }
       .tarot-spread.three-card figure .tarot-card {
+        width: 100%;
         max-width: 100%;
         height: auto;
         margin: 0 0 1em; }
