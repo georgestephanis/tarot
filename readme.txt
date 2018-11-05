@@ -15,6 +15,7 @@ A fairly simple Tarot plugin.  Generates a three-card spread in a Gutenberg Bloc
 This plugin provides a new block in the Gutenberg editor, letting you generate and display Tarot spreads in your
 posts!  You can then write an interpretation for the spread or do whatever you like with the results.
 
+The bundled black and white SVG card images are generated from the 1910 Rider-Waite deck, which is in the public domain.
 
 == Upcoming Changes ==
 
