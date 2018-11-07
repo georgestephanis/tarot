@@ -16,6 +16,7 @@ class Tarot {
 	public static function go() {
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 		require_once( dirname( __FILE__ ) . '/blocks/tarot.php' );
+		require_once( dirname( __FILE__ ) . '/decks/8bit.php' );
 	}
 
 	public static function admin_menu() {
