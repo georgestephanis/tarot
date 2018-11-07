@@ -14,11 +14,144 @@
 class Tarot {
 
 	public static function go() {
+		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
+		add_action( 'wp_ajax_download-tarot-deck', array( __CLASS__, 'handle_download_tarot_decks' ) );
+
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 		require_once( dirname( __FILE__ ) . '/blocks/tarot.php' );
 
 		require_once( dirname( __FILE__ ) . '/decks/8bit.php' );
-		add_filter( 'tarot_get_deck', array( 'Tarot_8bit', 'filter_deck' ) );
+
+		switch( get_option( 'tarot_deck', 'base' ) ) {
+			case '8bit':
+				add_filter( 'tarot_get_deck', array( 'Tarot_8bit', 'filter_deck' ) );
+				break;
+			default:
+				break;
+		}
+
+	}
+
+	public static function admin_init() {
+		add_settings_section(
+			'tarot',
+			esc_html__( 'Tarot' ),
+			array( __CLASS__, 'writing_settings_section' ),
+			'writing'
+		);
+
+		add_settings_field(
+			'tarot_deck',
+			sprintf( '<label for="tarot_deck">%1$s</label>', __( 'Tarot Deck' ) ),
+			array( __CLASS__, 'tarot_deck_cb' ),
+			'writing',
+			'tarot'
+		);
+
+		register_setting( 'writing', 'tarot_deck', array( __CLASS__, 'sanitize_tarot_deck' ) );
+	}
+
+	public static function writing_settings_section() {
+		?>
+		<p id="tarot-settings-section">
+			<?php _e( 'Settings for Tarot decks and spreads&hellip;' ); ?>
+		</p>
+		<?php
+	}
+
+	public static function tarot_deck_cb() {
+		$decks = self::list_decks();
+		$current = get_option( 'tarot_deck', 'base' );
+		?>
+		<ul id="tarot-decks">
+			<?php foreach ( $decks as $slug => $deck ) : ?>
+				<li>
+					<input
+						type="radio"
+						name="tarot_deck"
+						value="<?php echo esc_attr( $slug ); ?>"
+						<?php checked( $slug, $current ); ?>
+						<?php if ( ! $deck['installed'] ) echo 'disabled'; ?>
+					/>
+
+					<?php echo esc_html( $deck['description'] ); ?>
+
+					<?php if ( ! $deck['installed'] ) : ?>
+						<button class="button button-secondary small install" data-deck="<?php echo esc_attr( $slug ); ?>" data-dl-nonce="<?php echo esc_attr( wp_create_nonce( 'download-tarot-deck_' . $slug ) ); ?>">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3zm-5.55-8h-2.9v3H8l4 4 4-4h-2.55z"/></svg>
+							<span class="screen-reader-text"><?php esc_html_e( 'Install' ); ?></span>
+						</button>
+					<?php endif; ?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+
+		<script>
+			(function($){
+				var $tarot_decks = $('#tarot-decks');
+				$tarot_decks.on( 'click', 'button.install', function(e){
+					const $btn = $( e.target ).closest('button');
+					e.preventDefault();
+					$btn.prop( 'disabled', true ).addClass( 'inactive' );
+					alert( '<?php echo esc_js( __( 'Please be patient, this may take a minute.' ) ); ?>' );
+
+					$.post(
+						ajaxurl,
+						{
+							action : 'download-tarot-deck',
+							deck : $btn.data( 'deck' ),
+							_wpnonce : $btn.data( 'dl-nonce' ),
+						},
+						function( response ) {
+							console.log( response );
+							if ( response.success ) {
+								$btn.siblings( 'input' ).prop( 'disabled', false );
+								$btn.remove();
+							} else {
+								alert( response.data );
+							}
+						}
+					);
+
+				});
+			})(jQuery);
+		</script>
+		<?php
+	}
+
+	public static function handle_download_tarot_decks() {
+		$deck = $_REQUEST['deck'];
+
+		$decks = self::list_decks();
+
+		if ( ! isset( $decks[ $deck ] ) ) {
+			wp_send_json_error( 'unknown_deck: ' . $deck );
+		}
+
+		check_ajax_referer( 'download-tarot-deck_' . $deck );
+
+		if ( ! current_user_can( 'upload_files' ) ) {
+			wp_send_json_error( 'bad_cap' );
+		}
+
+		$results = null;
+
+		switch( $deck ) {
+			case '8bit':
+				$results = Tarot_8bit::sideload_deck();
+				break;
+			default:
+				break;
+		}
+
+		wp_send_json_success( $results );
+	}
+
+	public static function sanitize_tarot_deck( $deck ) {
+		if ( ! in_array( $deck, array( '8bit'  ) ) ) {
+			$deck = 'base';
+		}
+		return $deck;
 	}
 
 	public static function admin_menu() {
@@ -80,9 +213,11 @@ class Tarot {
 		$decks = array(
 			'base' => array(
 				'installed' => true,
+				'description' => __( 'The base deck, a black and white version of the 1910 Rider-Waite deck.' ),
 			),
 			'8bit' => array(
 				'installed' => Tarot_8bit::is_installed(),
+				'description' => __( 'An 8-bit, retro-themed deck.' ),
 			),
 		);
 
