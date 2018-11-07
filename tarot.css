@@ -16,6 +16,8 @@
 .tarot-spread {
   background: forestgreen;
   padding: 1em;
+  margin-bottom: 0.5em;
+  border: 1px solid darkgreen;
   /* three cards */ }
   .tarot-spread.three-card {
     overflow: hidden; }
@@ -54,5 +56,14 @@
         color: #fff;
         font-weight: 600;
         font-size: 1em; }
+  .tarot-spread .deck-attribution {
+    display: block;
+    clear: both;
+    text-align: right;
+    font-size: 10px;
+    color: darkgreen;
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif; }
+    .tarot-spread .deck-attribution a {
+      color: darkgreen; }
 
 /*# sourceMappingURL=tarot.css.map */

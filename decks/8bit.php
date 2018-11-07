@@ -19,8 +19,13 @@ class Tarot_8bit {
         return file_exists( $upload_dir['basedir'] . '/tarot/8bit/' . $deck['ARCANA-00-FOOL'] );
     }
 
-    public static function install_button() {
-
+    public static function get_credit() {
+        return sprintf(
+            __( '<span class="credit"><a href="%s" target="_blank">8-Bit Tarot</a>, by <a href="%s" target="_blank">Indigo Kelleigh</a>. Licensed under <a href="%s" target="_blank">Creative Commons BY-NC-SA</a></span>' ),
+            'https://www.lunarbistro.com/games/8-bit-tarot/',
+            'http://www.indigokelleigh.com/',
+            'https://creativecommons.org/licenses/by-nc-sa/4.0/'
+        );
     }
 
     public static function get_deck_array() {

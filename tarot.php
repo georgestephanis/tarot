@@ -67,6 +67,7 @@ class Tarot {
 			<?php foreach ( $decks as $slug => $deck ) : ?>
 				<li>
 					<input
+						id="tarot_deck-<?php echo esc_attr( $slug ); ?>"
 						type="radio"
 						name="tarot_deck"
 						value="<?php echo esc_attr( $slug ); ?>"
@@ -74,7 +75,9 @@ class Tarot {
 						<?php if ( ! $deck['installed'] ) echo 'disabled'; ?>
 					/>
 
-					<?php echo esc_html( $deck['description'] ); ?>
+					<label for="tarot_deck-<?php echo esc_attr( $slug ); ?>">
+						<?php echo esc_html( $deck['description'] ); ?>
+					</label>
 
 					<?php if ( ! $deck['installed'] ) : ?>
 						<button class="button button-secondary small install" data-deck="<?php echo esc_attr( $slug ); ?>" data-dl-nonce="<?php echo esc_attr( wp_create_nonce( 'download-tarot-deck_' . $slug ) ); ?>">
@@ -82,6 +85,14 @@ class Tarot {
 							<span class="screen-reader-text"><?php esc_html_e( 'Install' ); ?></span>
 						</button>
 					<?php endif; ?>
+
+					<br />
+
+					<?php
+					if ( '8bit' === $slug ) {
+						echo '<small style="padding-left:2em;">' . Tarot_8bit::get_credit() . '</small>';
+					}
+					?>
 				</li>
 			<?php endforeach; ?>
 		</ul>
@@ -203,7 +214,11 @@ class Tarot {
 			self::print_card( $deck[ $card ], ( $props['inverted'] ? 'inverted' : '' ) );
 			$return .= ob_get_clean();
 		}
+		if ( '8bit' === get_option( 'tarot_deck', 'base' ) ) {
+			$return .= '<small class="deck-attribution">' . sprintf( __( 'Card images from %s.' ), Tarot_8bit::get_credit() ) . '</small>';
+		}
 		$return .= '</div>';
+
 
 		return $return;
 
