@@ -16,7 +16,9 @@ class Tarot {
 	public static function go() {
 		add_action( 'admin_menu', array( __CLASS__, 'admin_menu' ) );
 		require_once( dirname( __FILE__ ) . '/blocks/tarot.php' );
+
 		require_once( dirname( __FILE__ ) . '/decks/8bit.php' );
+		add_filter( 'tarot_get_deck', array( 'Tarot_8bit', 'filter_deck' ) );
 	}
 
 	public static function admin_menu() {
@@ -72,6 +74,19 @@ class Tarot {
 
 		return $return;
 
+	}
+
+	public static function list_decks() {
+		$decks = array(
+			'base' => array(
+				'installed' => true,
+			),
+			'8bit' => array(
+				'installed' => Tarot_8bit::is_installed(),
+			),
+		);
+
+		return $decks;
 	}
 
 	public static function get_deck() {
