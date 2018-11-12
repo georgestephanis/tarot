@@ -73,7 +73,9 @@ const {
 		title       : __( 'Tarot Spread', 'tarot' ),
 		icon        : star,
 		category    : 'widgets',
-		supportHTML : false,
+        supports    : {
+            html    : false,
+        },
 
 		attributes : {
 			cards : {
