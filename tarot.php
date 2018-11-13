@@ -166,7 +166,7 @@ class Tarot {
 	}
 
 	public static function admin_menu() {
-		add_management_page( 'Tarot Test', 'tarot', 'manage_options', 'tarot', array( __CLASS__, 'print_deck' ) );
+		add_management_page( __( 'Tarot Test', 'tarot' ), 'tarot', 'manage_options', 'tarot', array( __CLASS__, 'print_deck' ) );
 	}
 
 	public static function print_deck() {
