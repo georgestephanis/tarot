@@ -4,7 +4,7 @@
  * Plugin Name: Tarot
  * Plugin URI:   https://github.com/georgestephanis/tarot/
  * Description:  A Gutenberg Block allowing Tarot card spreads
- * Version:      0.9.1
+ * Version:      1.0
  * Author:       George Stephanis
  * Author URI:   https://stephanis.info
  * License:      GPL2

@@ -4,7 +4,7 @@ Tags: tarot, gutenberg, fortune telling
 Requires at least: 4.9
 Tested up to: 5.0-beta3
 Requires PHP: 5.2.4
-Stable tag: 0.9.1
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,11 +19,14 @@ The bundled black and white SVG card images are generated from the 1910 Rider-Wa
 
 == Upcoming Changes ==
 
-* The ability to download and use alternate deck images
 * The ability to manually select the cards, rather than using the computer to generate the selections
 * More spreads / layouts
 
 == Changelog ==
+
+= 1.0 =
+* Support internationalization better.
+* Add ability to reset a spread to generate a new one.
 
 = 0.9.1 =
 * Add ability to download and use 8bit card images.
