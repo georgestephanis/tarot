@@ -12,6 +12,8 @@
  * Text Domain:  tarot
  */
 
+define( 'TAROT_VERSION', '1.0' );
+
 class Tarot {
 
 	public static function go() {
