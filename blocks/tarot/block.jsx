@@ -85,10 +85,10 @@ const {
 		},
 
 		edit: function( props ) {
-			var cards = null,
-				generateSpread = function() {
+			let cards = null;
+			const generateSpread = function() {
 					cards = pickCards( 3 );
-					var newCards = {};
+					let newCards = {};
 					_.each( cards, function( c ) {
 						newCards[ c.id ] = {
 							inverted : c.inverted
@@ -145,7 +145,7 @@ const {
 		},
 
 		save: function( props ) {
-			var cards = null;
+			let cards = null;
 
 			// If we have cards stored for this block, use those.  Otherwise, get some new ones and store them.
 			if ( props.attributes.cards ) {
