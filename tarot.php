@@ -31,12 +31,12 @@ class Tarot {
 				break;
 		}
 
-        add_action( 'plugins_loaded', array( __CLASS__, 'load_plugin_textdomain' ) );
+		add_action( 'plugins_loaded', array( __CLASS__, 'load_plugin_textdomain' ) );
 	}
 
 	public static function load_plugin_textdomain() {
-        load_plugin_textdomain( 'tarot', FALSE, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
-    }
+		load_plugin_textdomain( 'tarot', FALSE, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
+	}
 
 	public static function admin_init() {
 		add_settings_section(
