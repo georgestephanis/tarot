@@ -109,39 +109,36 @@ const {
 				cards = props.attributes.cards;
 			}
 
-			return [
-				!! cards && (
-					<div key="tarot-spread" className={props.className + ' tarot-spread three-card'}>
-					{
-						_.map( cards, function( c, id ) {
-							return (
-								<TarotCard
-									key={'tarot/spread/' + id}
-									classes={c.inverted ? 'inverted' : ''}
-									id={id}
-								/>
-							);
-						} )
-					}
-					</div>
-				),
-				! cards && (
-					<Placeholder key="tarot/spread/generate" label={__( 'Generate a Tarot Spread…', 'tarot' )} icon={ star }>
-						<Button key="tarot/spread/generate/button" isPrimary={true} isLarge={true} onClick={generateSpread}>
-							{ __( 'Three-Card Spread', 'tarot' ) }
-						</Button>
-					</Placeholder>
-				),
-				(
+			return (
+				<Fragment>
+					{ cards ? (
+						<div key="tarot-spread" className={props.className + ' tarot-spread three-card'}>
+							{ _.map( cards, function( c, id ) {
+								return (
+									<TarotCard
+										key={'tarot/spread/' + id}
+										classes={ c.inverted ? 'inverted' : '' }
+										id={id}
+									/>
+								);
+							} ) }
+						</div>
+					) : (
+						<Placeholder key="tarot/spread/generate" label={ __( 'Generate a Tarot Spread…', 'tarot' ) } icon={ star }>
+							<Button key="tarot/spread/generate/button" isPrimary={true} isLarge={true} onClick={generateSpread}>
+								{ __( 'Three-Card Spread', 'tarot' ) }
+							</Button>
+						</Placeholder>
+					) }
 					<InspectorControls>
-						<PanelBody title={ __( 'Tarot Settings' ) }>
-							<Button key="tarot/spread/clear/button" isPrimary={ !! props.attributes.cards } disabled={ ! props.attributes.cards } isLarge={true} onClick={clearSpread}>
+						<PanelBody title={ __( 'Tarot Settings', 'tarot' ) }>
+							<Button isPrimary={ !! props.attributes.cards } disabled={ ! props.attributes.cards } isLarge={true} onClick={clearSpread}>
 								{ __( 'Clear Spread', 'tarot' ) }
 							</Button>
 						</PanelBody>
 					</InspectorControls>
-				)
-			];
+                </Fragment>
+			);
 		},
 
 		save: function( props ) {
