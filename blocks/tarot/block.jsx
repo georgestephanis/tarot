@@ -80,7 +80,7 @@ const {
 		attributes : {
 			cards : {
 				type    : 'object',
-				default : null
+				default : null,
 			},
 		},
 
@@ -144,7 +144,7 @@ const {
 		save: function( props ) {
 			let cards = null;
 
-			// If we have cards stored for this block, use those.  Otherwise, get some new ones and store them.
+			// If we have cards stored for this block, use those.
 			if ( props.attributes.cards ) {
 				cards = props.attributes.cards;
 			}
@@ -158,7 +158,7 @@ const {
 									{deck[ id ].label + ( c.inverted ? ' ' + __( '(Inverted)', 'tarot' ) : '' )}
 								</li>
 							);
-						})
+						} )
 					}
 				</ol>
 			);
