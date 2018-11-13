@@ -1,0 +1,317 @@
+# Copyright (C) 2018 George Stephanis
+# This file is distributed under the same license as the Tarot plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarot 0.9.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tarot\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-11-13T00:03:46+00:00\n"
+"PO-Revision-Date: 2018-11-13T00:03:46+00:00\n"
+"X-Generator: WP-CLI 2.1.0-alpha-74823ba\n"
+"X-Domain: tarot\n"
+
+#. Plugin Name of the plugin
+#: tarot.php:38
+msgid "Tarot"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/georgestephanis/tarot/"
+msgstr ""
+
+#. Description of the plugin
+msgid "A Gutenberg Block allowing Tarot card spreads"
+msgstr ""
+
+#. Author of the plugin
+msgid "George Stephanis"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://stephanis.info"
+msgstr ""
+
+#: decks/8bit.php:24
+msgid "<span class=\"credit\"><a href=\"%s\" target=\"_blank\">8-Bit Tarot</a>, by <a href=\"%s\" target=\"_blank\">Indigo Kelleigh</a>. Licensed under <a href=\"%s\" target=\"_blank\">Creative Commons BY-NC-SA</a></span>"
+msgstr ""
+
+#: tarot.php:45
+msgid "Tarot Deck"
+msgstr ""
+
+#: tarot.php:57
+msgid "Settings for Tarot decks and spreads&hellip;"
+msgstr ""
+
+#: tarot.php:85
+msgid "Install"
+msgstr ""
+
+#: tarot.php:107
+msgid "Please be patient, this may take a minute."
+msgstr ""
+
+#: tarot.php:169
+msgid "Tarot Test"
+msgstr ""
+
+#: tarot.php:198
+msgid "(Inverted)"
+msgstr ""
+
+#: tarot.php:200
+msgid "Choose a card&hellip;"
+msgstr ""
+
+#: tarot.php:218
+msgid "Card images from %s."
+msgstr ""
+
+#: tarot.php:231
+msgid "The base deck, a black and white version of the 1910 Rider-Waite deck."
+msgstr ""
+
+#: tarot.php:235
+msgid "An 8-bit, retro-themed deck."
+msgstr ""
+
+#: tarot.php:247
+msgid "The Fool"
+msgstr ""
+
+#: tarot.php:248
+#: tarot.php:255
+#: tarot.php:262
+#: tarot.php:269
+#: tarot.php:276
+#: tarot.php:283
+#: tarot.php:290
+#: tarot.php:297
+#: tarot.php:304
+#: tarot.php:311
+#: tarot.php:318
+#: tarot.php:325
+#: tarot.php:332
+#: tarot.php:339
+#: tarot.php:346
+#: tarot.php:353
+#: tarot.php:360
+#: tarot.php:367
+#: tarot.php:374
+#: tarot.php:381
+#: tarot.php:388
+#: tarot.php:395
+msgid "Major Arcana"
+msgstr ""
+
+#: tarot.php:254
+msgid "The Magician"
+msgstr ""
+
+#: tarot.php:261
+msgid "The High Priestess"
+msgstr ""
+
+#: tarot.php:268
+msgid "The Empress"
+msgstr ""
+
+#: tarot.php:275
+msgid "The Emperor"
+msgstr ""
+
+#: tarot.php:282
+msgid "The Heirophant"
+msgstr ""
+
+#: tarot.php:289
+msgid "The Lovers"
+msgstr ""
+
+#: tarot.php:296
+msgid "The Chariot"
+msgstr ""
+
+#: tarot.php:303
+msgid "Strength"
+msgstr ""
+
+#: tarot.php:310
+msgid "The Hermit"
+msgstr ""
+
+#: tarot.php:317
+msgid "The Wheel of Fortune"
+msgstr ""
+
+#: tarot.php:324
+msgid "Justice"
+msgstr ""
+
+#: tarot.php:331
+msgid "The Hanged Man"
+msgstr ""
+
+#: tarot.php:338
+msgid "Death"
+msgstr ""
+
+#: tarot.php:345
+msgid "Temperance"
+msgstr ""
+
+#: tarot.php:352
+msgid "The Devil"
+msgstr ""
+
+#: tarot.php:359
+msgid "The Tower"
+msgstr ""
+
+#: tarot.php:366
+msgid "The Star"
+msgstr ""
+
+#: tarot.php:373
+msgid "The Moon"
+msgstr ""
+
+#: tarot.php:380
+msgid "The Sun"
+msgstr ""
+
+#: tarot.php:387
+msgid "Judgement"
+msgstr ""
+
+#: tarot.php:394
+msgid "The World"
+msgstr ""
+
+#: tarot.php:402
+#: tarot.php:408
+#: tarot.php:414
+#: tarot.php:420
+#: tarot.php:426
+#: tarot.php:432
+#: tarot.php:438
+#: tarot.php:444
+#: tarot.php:450
+#: tarot.php:456
+#: tarot.php:462
+#: tarot.php:468
+#: tarot.php:474
+#: tarot.php:480
+msgid "Wands"
+msgstr ""
+
+#: tarot.php:487
+#: tarot.php:493
+#: tarot.php:499
+#: tarot.php:505
+#: tarot.php:511
+#: tarot.php:517
+#: tarot.php:523
+#: tarot.php:529
+#: tarot.php:535
+#: tarot.php:541
+#: tarot.php:547
+#: tarot.php:553
+#: tarot.php:559
+#: tarot.php:565
+msgid "Pentacles"
+msgstr ""
+
+#: tarot.php:572
+#: tarot.php:578
+#: tarot.php:584
+#: tarot.php:590
+#: tarot.php:596
+#: tarot.php:602
+#: tarot.php:608
+#: tarot.php:614
+#: tarot.php:620
+#: tarot.php:626
+#: tarot.php:632
+#: tarot.php:638
+#: tarot.php:644
+#: tarot.php:650
+msgid "Cups"
+msgstr ""
+
+#: tarot.php:657
+#: tarot.php:663
+#: tarot.php:669
+#: tarot.php:675
+#: tarot.php:681
+#: tarot.php:687
+#: tarot.php:693
+#: tarot.php:699
+#: tarot.php:705
+#: tarot.php:711
+#: tarot.php:717
+#: tarot.php:723
+#: tarot.php:729
+#: tarot.php:735
+msgid "Swords"
+msgstr ""
+
+#: tarot.php:741
+msgid "Ace of %s"
+msgstr ""
+
+#: tarot.php:742
+msgid "Two of %s"
+msgstr ""
+
+#: tarot.php:743
+msgid "Three of %s"
+msgstr ""
+
+#: tarot.php:744
+msgid "Four of %s"
+msgstr ""
+
+#: tarot.php:745
+msgid "Five of %s"
+msgstr ""
+
+#: tarot.php:746
+msgid "Six of %s"
+msgstr ""
+
+#: tarot.php:747
+msgid "Seven of %s"
+msgstr ""
+
+#: tarot.php:748
+msgid "Eight of %s"
+msgstr ""
+
+#: tarot.php:749
+msgid "Nine of %s"
+msgstr ""
+
+#: tarot.php:750
+msgid "Ten of %s"
+msgstr ""
+
+#: tarot.php:751
+msgid "Page of %s"
+msgstr ""
+
+#: tarot.php:752
+msgid "Knight of %s"
+msgstr ""
+
+#: tarot.php:753
+msgid "Queen of %s"
+msgstr ""
+
+#: tarot.php:754
+msgid "King of %s"
+msgstr ""
