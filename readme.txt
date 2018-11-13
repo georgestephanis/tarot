@@ -2,9 +2,9 @@
 Contributors: georgestephanis
 Tags: tarot, gutenberg, fortune telling
 Requires at least: 4.9
-Tested up to: 5.0-beta3
+Tested up to: 5.0-beta4
 Requires PHP: 5.2.4
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,9 @@ The bundled black and white SVG card images are generated from the 1910 Rider-Wa
 * More spreads / layouts
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix a few minor issues with dependencies when using WordPress 5.0 without the Gutenberg plugin.
 
 = 1.0 =
 * Support internationalization better.
