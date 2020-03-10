@@ -140,7 +140,6 @@ class Tarot_8bit {
 			$tmp = download_url( 'http://www.lunarbistro.com/img/game-img/tarot-cards/' . $card );
 
 			if ( is_wp_error( $tmp ) ) {
-				unlink( $tmp );
 				continue;
 			}
 
