@@ -137,7 +137,7 @@ class Tarot_8bit {
 		$return = array();
 		$deck = self::get_deck_array();
 		foreach ( $deck as $id => $card ) {
-			$tmp = download_url( 'https://www.lunarbistro.com/img/game-img/tarot-cards/' . $card );
+			$tmp = download_url( 'http://www.lunarbistro.com/img/game-img/tarot-cards/' . $card );
 
 			if ( is_wp_error( $tmp ) ) {
 				unlink( $tmp );
