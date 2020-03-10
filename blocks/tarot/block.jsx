@@ -12,7 +12,9 @@ const {
 const {
 	Placeholder,
 	Button,
-	PanelBody
+	ButtonGroup,
+	PanelBody,
+	ToggleControl
 } = wp.components;
 
 const {
@@ -39,11 +41,81 @@ const {
 		return selection;
 	}
 
+	class TarotCardPicker extends Component {
+		render() {
+			const suit = this.props.suit ? this.props.suit : null,
+				cardinality = this.props.cardinality ? this.props.cardinality : null;
+
+			return (
+				<div className="picker">
+					<ButtonGroup className="suit">
+						<Button isPrimary>Major Arcana</Button>
+						<Button isPrimary>Wands</Button>
+						<Button isPrimary>Pentacles</Button>
+						<Button isPrimary>Cups</Button>
+						<Button isPrimary>Swords</Button>
+					</ButtonGroup>
+					{ 'Major Arcana' === suit &&
+						<ButtonGroup className="cardinality">
+							<Button isSecondary>The Fool</Button>
+							<Button isSecondary>The Magician</Button>
+							<Button isSecondary>The High Priestess</Button>
+							<Button isSecondary>The Empress</Button>
+							<Button isSecondary>The Emperor</Button>
+							<Button isSecondary>The Hierophant</Button>
+							<Button isSecondary>The Lovers</Button>
+							<Button isSecondary>The Chariot</Button>
+							<Button isSecondary>Strength</Button>
+							<Button isSecondary>The Hermit</Button>
+							<Button isSecondary>Wheel of Fortune</Button>
+							<Button isSecondary>Justice</Button>
+							<Button isSecondary>The Hanged Man</Button>
+							<Button isSecondary>Death</Button>
+							<Button isSecondary>Temperance</Button>
+							<Button isSecondary>The Devil</Button>
+							<Button isSecondary>The Tower</Button>
+							<Button isSecondary>The Star</Button>
+							<Button isSecondary>The Moon</Button>
+							<Button isSecondary>The Sun</Button>
+							<Button isSecondary>Judgement</Button>
+							<Button isSecondary>The World</Button>
+						</ButtonGroup>
+					}
+					{ 'Major Arcana' !== suit &&
+						<ButtonGroup className="cardinality">
+							<Button isSecondary>Ace</Button>
+							<Button isSecondary>2</Button>
+							<Button isSecondary>3</Button>
+							<Button isSecondary>4</Button>
+							<Button isSecondary>5</Button>
+							<Button isSecondary>6</Button>
+							<Button isSecondary>7</Button>
+							<Button isSecondary>8</Button>
+							<Button isSecondary>9</Button>
+							<Button isSecondary>10</Button>
+							<Button isSecondary>Page</Button>
+							<Button isSecondary>Knight</Button>
+							<Button isSecondary>Queen</Button>
+							<Button isSecondary>King</Button>
+						</ButtonGroup>
+					}
+					<ToggleControl
+						label="Inverted"
+					/>
+				</div>
+			);
+		}
+	}
+
 	class TarotCard extends Component {
 		render() {
 			const id = this.props.id ? this.props.id : null,
 				card = deck[ id ] ? deck[ id ] : null,
 				classes = this.props.classes || '';
+
+			if ( ! card ) {
+				return ( <TarotCardPicker /> );
+			}
 
 			return (
 				<figure>
@@ -102,6 +174,15 @@ const {
 					props.setAttributes({
 						cards : null
 					});
+				},
+				manualSpread = function() {
+					props.setAttributes({
+						cards : [
+							{},
+							{},
+							{}
+						]
+					});
 				};
 
 			// If we have cards stored for this block, use those.  Otherwise, get some new ones and store them.
@@ -127,6 +208,9 @@ const {
 						<Placeholder key="tarot/spread/generate" label={ __( 'Generate a Tarot Spread…', 'tarot' ) } icon={ star }>
 							<Button key="tarot/spread/generate/button" isPrimary={true} isLarge={true} onClick={generateSpread}>
 								{ __( 'Three-Card Spread', 'tarot' ) }
+							</Button>
+							<Button key="tarot/spread/manual/button" isSecondary={true} isLarge={true} onClick={manualSpread}>
+								{ __( 'Manual Card Select', 'tarot' ) }
 							</Button>
 						</Placeholder>
 					) }

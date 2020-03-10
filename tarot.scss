@@ -22,7 +22,8 @@
 
 	/* three cards */
 	&.three-card {
-		figure {
+		figure,
+		.picker {
 			width: 33.333%;
 			max-width: calc(33.333% - .667em);
 			margin: 0 0 0 1em;
