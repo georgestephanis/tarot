@@ -216,6 +216,10 @@ class Tarot {
 	public static function print_spread( $atts ) {
 		$deck = self::get_deck();
 
+		if ( empty( $atts['cards'] ) ) {
+			return null;
+		}
+
 		$return = '<div class="tarot-spread three-card">';
 		foreach ( $atts['cards'] as $card => $props ) {
 			ob_start();
