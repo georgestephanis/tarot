@@ -12,7 +12,7 @@ add_action( 'init', 'register_tarot_block' );
 function tarot_enqueue_block_editor_assets() {
 	wp_enqueue_script( 'tarot-block', plugins_url( 'tarot/block.js', __FILE__ ), array(
 		'wp-element',
-		'wp-editor',
+		'wp-block-editor',
 		'wp-components',
 		'wp-blocks',
 		'wp-i18n',
