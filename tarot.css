@@ -75,6 +75,16 @@
   font-weight: 600;
   font-size: 1em;
 }
+.tarot-spread .picker .tarot-card {
+  display: block;
+  padding: 0.5em;
+}
+.tarot-spread .picker .tarot-card .suit,
+.tarot-spread .picker .tarot-card .cardinality,
+.tarot-spread .picker .tarot-card .is-inverted,
+.tarot-spread .picker .tarot-card .save-card {
+  display: block;
+}
 .tarot-spread .deck-attribution {
   display: block;
   clear: both;
