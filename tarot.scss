@@ -22,6 +22,8 @@
 
 	/* three cards */
 	&.three-card {
+		overflow: hidden;
+
 		figure,
 		.picker {
 			width: 33.333%;
@@ -68,7 +70,19 @@
 				font-size: 1em;
 			}
 		}
-		overflow: hidden;
+	}
+	.picker {
+		.tarot-card {
+			display: block;
+			padding: 0.5em;
+
+			.suit,
+			.cardinality,
+			.is-inverted,
+			.save-card {
+				display: block;
+			}
+		}
 	}
 	.deck-attribution {
 		display: block;
