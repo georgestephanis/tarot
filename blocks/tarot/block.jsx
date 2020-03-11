@@ -41,67 +41,131 @@ const {
 		return selection;
 	}
 
+	function getCardIdFromProperties( suit, order ) {
+		let fullDeck = Object.entries( deck ),
+			matches = fullDeck.filter( function( card ) {
+				return card[1].suit === suit && card[1].order === order;
+			});
+
+		if ( 1 === matches.length ) {
+			return matches[0][0];
+		}
+
+		return null;
+	}
+
 	class TarotCardPicker extends Component {
+		constructor( props ) {
+			super( props );
+			this.state = {
+				suit: 0,
+				order: 0,
+				inverted: false,
+			};
+		}
+
+		setSuit( value ) {
+			this.setState( { suit: value } );
+		}
+
+		setOrder( value ) {
+			this.setState( { order: value} );
+		}
+
+		toggleInverted() {
+			this.setState( { inverted: ! this.state.inverted } );
+		}
+
 		render() {
 			const suit = this.props.suit ? this.props.suit : null,
-				cardinality = this.props.cardinality ? this.props.cardinality : null;
+				cardinality = this.props.cardinality ? this.props.cardinality : null,
+				suits = [
+					__( 'Major Arcana', 'tarot' ),
+					__( 'Wands', 'tarot' ),
+					__( 'Pentacles', 'tarot' ),
+					__( 'Cups', 'tarot' ),
+					__( 'Swords', 'tarot' ),
+				],
+				major_arcana = [
+					__( 'The Fool', 'tarot' ),
+					__( 'The Magician', 'tarot' ),
+					__( 'The High Priestess', 'tarot' ),
+					__( 'The Empress', 'tarot' ),
+					__( 'The Emperor', 'tarot' ),
+					__( 'The Hierophant', 'tarot' ),
+					__( 'The Lovers', 'tarot' ),
+					__( 'The Chariot', 'tarot' ),
+					__( 'Strength', 'tarot' ),
+					__( 'The Hermit', 'tarot' ),
+					__( 'Wheel of Fortune', 'tarot' ),
+					__( 'Justice', 'tarot' ),
+					__( 'The Hanged Man', 'tarot' ),
+					__( 'Death', 'tarot' ),
+					__( 'Temperance', 'tarot' ),
+					__( 'The Devil', 'tarot' ),
+					__( 'The Tower', 'tarot' ),
+					__( 'The Star', 'tarot' ),
+					__( 'The Moon', 'tarot' ),
+					__( 'The Sun', 'tarot' ),
+					__( 'Judgement', 'tarot' ),
+					__( 'The World', 'tarot' )
+				],
+				minor_cardinalities = [
+					__( 'Ace', 'tarot' ),
+					__( '2', 'tarot' ),
+					__( '3', 'tarot' ),
+					__( '4', 'tarot' ),
+					__( '5', 'tarot' ),
+					__( '6', 'tarot' ),
+					__( '7', 'tarot' ),
+					__( '8', 'tarot' ),
+					__( '9', 'tarot' ),
+					__( '10', 'tarot' ),
+					__( 'Page', 'tarot' ),
+					__( 'Knight', 'tarot' ),
+					__( 'Queen', 'tarot' ),
+					__( 'King', 'tarot' )
+				];
 
 			return (
 				<div className="picker">
-					<ButtonGroup className="suit">
-						<Button isPrimary>Major Arcana</Button>
-						<Button isPrimary>Wands</Button>
-						<Button isPrimary>Pentacles</Button>
-						<Button isPrimary>Cups</Button>
-						<Button isPrimary>Swords</Button>
-					</ButtonGroup>
-					{ 'Major Arcana' === suit &&
-						<ButtonGroup className="cardinality">
-							<Button isSecondary>The Fool</Button>
-							<Button isSecondary>The Magician</Button>
-							<Button isSecondary>The High Priestess</Button>
-							<Button isSecondary>The Empress</Button>
-							<Button isSecondary>The Emperor</Button>
-							<Button isSecondary>The Hierophant</Button>
-							<Button isSecondary>The Lovers</Button>
-							<Button isSecondary>The Chariot</Button>
-							<Button isSecondary>Strength</Button>
-							<Button isSecondary>The Hermit</Button>
-							<Button isSecondary>Wheel of Fortune</Button>
-							<Button isSecondary>Justice</Button>
-							<Button isSecondary>The Hanged Man</Button>
-							<Button isSecondary>Death</Button>
-							<Button isSecondary>Temperance</Button>
-							<Button isSecondary>The Devil</Button>
-							<Button isSecondary>The Tower</Button>
-							<Button isSecondary>The Star</Button>
-							<Button isSecondary>The Moon</Button>
-							<Button isSecondary>The Sun</Button>
-							<Button isSecondary>Judgement</Button>
-							<Button isSecondary>The World</Button>
+					<div className="tarot-card">
+						<ButtonGroup className="suit">
+							{ suits.map( ( item, index ) => (
+								<Button isSecondary key={ 'tarot/picker/suit/' + index } isPrimary={ index === this.state.suit } onClick={ () => this.setSuit( index ) }>
+									{item}
+								</Button>
+							) ) }
 						</ButtonGroup>
-					}
-					{ 'Major Arcana' !== suit &&
-						<ButtonGroup className="cardinality">
-							<Button isSecondary>Ace</Button>
-							<Button isSecondary>2</Button>
-							<Button isSecondary>3</Button>
-							<Button isSecondary>4</Button>
-							<Button isSecondary>5</Button>
-							<Button isSecondary>6</Button>
-							<Button isSecondary>7</Button>
-							<Button isSecondary>8</Button>
-							<Button isSecondary>9</Button>
-							<Button isSecondary>10</Button>
-							<Button isSecondary>Page</Button>
-							<Button isSecondary>Knight</Button>
-							<Button isSecondary>Queen</Button>
-							<Button isSecondary>King</Button>
-						</ButtonGroup>
-					}
-					<ToggleControl
-						label="Inverted"
-					/>
+
+						{ 0 === this.state.suit &&
+							<ButtonGroup className="cardinality">
+								{ major_arcana.map( ( item, index ) => (
+									<Button isSecondary key={ 'tarot/picker/majorindex/' + index } isPrimary={ index === this.state.order } onClick={ () => this.setOrder( index ) }>
+										{item}
+									</Button>
+								) ) }
+							</ButtonGroup>
+						}
+						{ 0 !== this.state.suit &&
+							<ButtonGroup className="cardinality">
+								{ minor_cardinalities.map( ( item, index ) => (
+									<Button isSecondary key={ 'tarot/picker/index/' + index } isPrimary={ index === this.state.order } onClick={ () => this.setOrder( index ) }>
+										{item}
+									</Button>
+								) ) }
+							</ButtonGroup>
+						}
+
+						<ToggleControl className="is-inverted" label={ __( 'Inverted', 'tarot' ) } checked={ this.state.inverted } onChange={ () => this.toggleInverted() } />
+						<Button className="save-card" isPrimary onClick={ () => this.props.pickerFn( this.props.id, {
+										suit: suits[ this.state.suit ], // pass back the translated suit string to index by
+										order: ( 0 === this.state.suit ) ? this.state.order : this.state.order + 1, // major arcana index starts with zero
+										inverted: this.state.inverted
+									} ) }>
+							{ __( 'Save Card', 'tarot' ) }
+						</Button>
+					</div>
 				</div>
 			);
 		}
@@ -114,7 +178,7 @@ const {
 				classes = this.props.classes || '';
 
 			if ( ! card ) {
-				return ( <TarotCardPicker /> );
+				return ( <TarotCardPicker id={this.props.id} pickerFn={ this.props.pickerFn } /> );
 			}
 
 			return (
@@ -177,12 +241,36 @@ const {
 				},
 				manualSpread = function() {
 					props.setAttributes({
-						cards : [
-							{},
-							{},
-							{}
-						]
+						cards : {
+							pickNo1 : false,
+							pickNo2 : false,
+							pickNo3 : false,
+						}
 					});
+				},
+				setCard = function( oldId, newId, inverted ) {
+					let cards = Object.entries( props.attributes.cards ),
+						newCards = {};
+
+					cards.forEach( function( card ) {
+						// Gotta bump up index to account for zero indexing in arrays
+						if ( oldId === card[0] ) {
+							newCards[ newId ] = { inverted };
+						} else {
+							newCards[ card[0] ] = card[1];
+						}
+					});
+
+					props.setAttributes({
+						cards: newCards
+					});
+				},
+				handlePickerResponse = function( position, response ) {
+					const card = getCardIdFromProperties( response.suit, response.order );
+
+					if ( card && ! props.attributes.cards[ card ] ) {
+						setCard( position, card, response.inverted );
+					}
 				};
 
 			// If we have cards stored for this block, use those.  Otherwise, get some new ones and store them.
@@ -200,6 +288,7 @@ const {
 										key={'tarot/spread/' + id}
 										classes={ c.inverted ? 'inverted' : '' }
 										id={id}
+										pickerFn={handlePickerResponse}
 									/>
 								);
 							} ) }
