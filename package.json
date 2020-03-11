@@ -5,8 +5,8 @@
   "main": "blocks/tarot/block.js",
   "private": true,
   "scripts": {
-    "start": "parcel watch blocks/tarot/block.jsx --out-dir blocks/tarot",
-    "build": "parcel build blocks/tarot/block.jsx --out-dir blocks/tarot"
+    "start": "parcel watch blocks/tarot/block.jsx --out-dir blocks/tarot --public-url .",
+    "build": "parcel build blocks/tarot/block.jsx --out-dir blocks/tarot --public-url ."
   },
   "keywords": [
     "wordpress",
